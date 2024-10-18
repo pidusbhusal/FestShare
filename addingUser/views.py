@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import HttpResponse
 
@@ -37,15 +38,24 @@ def LogOut(req):
     
 
 
-def SignUp(req):
-    return render(req, 'SignUp.html' )
+def RegisterUser(req):
+    if req.method == 'POST':
+        firstName = req.POST['firstName']
+        LastName = req.POST['LastName']
+        username = req.POST['username']
+        email = req.POST['email']
+        password = req.POST['password1']
+        password2 = req.POST['password2']
+        preferences = req.POST['preferences']
+        User.objects.create_user(username=username, email=email , password=password)
+        user = authenticate(username = username, password = password, first_name = firstName, last_name = LastName)
+        login(req, user)
+        messages.success(req, ("registration sucessfull"))
+        return redirect('/')
 
-def CreateNewUser(req):
-    name = req.POST['name']
-    email = req.POST['email']
-    password = req.POST['password']
-    preferences = req.POST['preferences']
-    return render(req, 'GreetUser.html', {'name':name, "email":email, "preferences":preferences , "password":password})
+    else:
+        return render(req, 'SignUp.html' )
+
 
 def Home(req):
     return render(req, 'Home.html')

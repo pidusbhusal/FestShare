@@ -8,20 +8,32 @@
 </head>
 
 <body>
-    <form action="greetUser" method="post">
+    <form action="SignUp" method="post">
         {% csrf_token %}
         <div>
-            Name:
-            <input type="text" name="name" id="name">
+            First Name:
+            <input type="text" name="firstName" id="firstName">
+        </div>
+        <div>
+            Last Name:
+            <input type="text" name="LastName" id="LastName">
         </div>
         <div>
             Email:
             <input type="email" name="email" id="email">
         </div>
+        <div>
+            Username:
+            <input type="text" name="username" id="username">
+        </div>
 
         <div>
             Password:
-            <input type="password" name="password" id="password">
+            <input type="password" name="password1" id="password1">
+        </div>
+        <div>
+            Confirm Password:
+            <input type="password" name="password2" id="password2">
         </div>
         <div>
             Preferences:
