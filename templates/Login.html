@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signin-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 500px;
+
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            width: fit-content;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 300px;
+            margin: auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border: none;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .form-group a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="signin-container">
+        <h2>Sign In </h2>
+        <form action="/Login" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="Username">Username</label>
+                <input type="Username" id="Username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sign In">
+            </div>
+            <div class="form-group">
+                <a href="/forgot-password">Forgot Password?</a>
+            </div>
+            <p>{{message}}</p>
+            <div>
+                <p>Don't have an account ?
+                </p>
+                <a href="/SignUp">Create New Account</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
