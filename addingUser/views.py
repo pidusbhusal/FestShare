@@ -47,6 +47,9 @@ def RegisterUser(req):
         password = req.POST['password1']
         password2 = req.POST['password2']
         preferences = req.POST['preferences']
+        if password != password2:
+            messages.error(req, "Passwords do not match")
+            return render(req, 'SignUp.html')
         User.objects.create_user(username=username, email=email , password=password)
         user = authenticate(username = username, password = password, first_name = firstName, last_name = LastName)
         login(req, user)
@@ -58,4 +61,6 @@ def RegisterUser(req):
 
 
 def Home(req):
-    return render(req, 'Home.html')
+    user_firstname = 'Sudip'
+    total_moneySaved = 0.00
+    return render(req, 'Home.html', {'firstname':user_firstname, 'total_moneySaved':total_moneySaved,})

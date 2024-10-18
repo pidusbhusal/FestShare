@@ -9,8 +9,13 @@
 
 <body>
     {%include 'navbar.html' %}
-    Logged In
-    <button href>Log Out</button>
+    Hi {{firstname}}
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name='addedMoney' placeholder="0.00" />$
+        <p>You are {{total_moneySaved}}$ richer then before</p>
+        <button type="submit">Add Money</button>
+    </form>
 </body>
 
 </html>
