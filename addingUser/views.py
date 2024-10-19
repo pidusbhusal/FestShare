@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from money_tracker.models import UserAccount
 from django.contrib import messages
 from django.http import HttpResponse
 
@@ -51,8 +52,11 @@ def RegisterUser(req):
             messages.error(req, "Passwords do not match")
             return render(req, 'SignUp.html')
         User.objects.create_user(username=username, email=email , password=password)
+        
         user = authenticate(username = username, password = password, first_name = firstName, last_name = LastName)
         login(req, user)
+        user_account = UserAccount(user = req.user, firstName = firstName, lastname = LastName, email = email, preferences = preferences)
+        user_account.save()
         messages.success(req, ("registration sucessfull"))
         return redirect('/')
 

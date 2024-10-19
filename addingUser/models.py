@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 
+
 # class User(models.Model):
 #     email = models.EmailField()
 #     name = models.CharField(100)
