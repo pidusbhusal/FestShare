@@ -25,9 +25,13 @@ def Home(req):
 
             return redirect('/Login')
     else:
-        user_firstname = ''
+        if req.user.is_authenticated:
+            user = UserAccount.objects.filter(user = req.user ).first()
+            firstName = user.firstName
+            total_moneySaved = user.NetWorth
+            return render(req, 'Home.html', {'firstname':firstName, 'total_moneySaved':total_moneySaved,})
+        firstName = ''
         total_moneySaved = 0.00
-        messages.success(req, 'This is just exception')
-        return render(req, 'Home.html', {'firstname':user_firstname, 'total_moneySaved':total_moneySaved,})
+        return render(req, 'Home.html', {'firstname':firstName, 'total_moneySaved':total_moneySaved,})
     
     
