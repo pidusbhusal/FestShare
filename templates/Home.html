@@ -4,18 +4,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Game UI</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Use Poppins font */
+            background-color: #5188ff;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .money-display {
+            font-size: 20px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.4);
+            /* White with transparency */
+            backdrop-filter: blur(10px);
+            /* Glassmorphic effect */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        input[type="text"] {
+            width: calc(100% - 30px);
+            padding: 20px;
+            /* Increased padding for bigger input field */
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 24px;
+            /* Increased font size for better visibility */
+            background-color: #ffffff;
+            color: #282c34;
+            outline: none;
+            box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            color: #ffffff;
+            background-color: #555;
+            /* Dark gray color */
+            border: 2px solid #333;
+            /* Dark border for 3D effect */
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            /* Added transform for 3D effect */
+        }
+
+        button:hover {
+            background-color: #444;
+            /* Slightly darker on hover */
+            transform: translateY(-2px);
+            /* Raise button effect */
+        }
+
+        @media (max-width: 500px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+
+            .money-display {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    {%include 'navbar.html' %}
-    Hi {{firstname}}
-    <form action="" method="post">
-        {% csrf_token %}
-        <input type="text" name='addedMoney' placeholder="0.00" />$
-        <p>You are {{total_moneySaved}}$ richer then before</p>
-        <button type="submit">Add Money</button>
-    </form>
+    {% include 'navbar.html' %}
+    <h1>Welcome, {{ firstname }}!</h1>
+    <div class="money-display">
+        <p>You are <strong>{{ total_moneySaved }}</strong>$ richer than before</p>
+    </div>
+    <div class="form-container">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="text" name="addedMoney" placeholder="0.00" required />
+            <button type="submit">Add Money</button>
+        </form>
+    </div>
 </body>
 
 </html>

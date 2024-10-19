@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from money_tracker.models import UserAccount
 from django.contrib import messages
 from django.http import HttpResponse
@@ -32,7 +33,7 @@ def Login(req):
             return redirect('/')
         else:
             # Failed
-            messages.success(req, ("Invalid Username or password"))
+            messages.error(req, ("Invalid Username or password"))
             return render(req, 'Login.html', {'message':'invalid credentials'})
     
     return render(req,'Login.html', {'message':''}) # this will work if it is not POST 
@@ -61,10 +62,7 @@ def RegisterUser(req):
         password2 = req.POST['password2']
         preferences = req.POST['preferences']
 
-        # Check if all the field is filled
-        if not all(firstName, LastName, username, email, password, password2, preferences):
-            messages.error(req, 'All field are required')
-            return render(req, 'SignUp.html')
+       
         
         # Confirm Password
         if password != password2:
