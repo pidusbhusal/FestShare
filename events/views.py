@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from .models import Event  # Import your Event model
+
 
 # Create your views here.
 def Onboarding(req):
@@ -8,4 +10,9 @@ def Onboarding(req):
     return render(req, 'Onboarding.html')
 
 def Home(req):
-    return render(req, 'Home.html')
+    if not  req.user.is_authenticated:
+        return redirect('/Login')
+    
+    events = Event.objects.all()
+
+    return render(req, 'Home.html', {'events': events})
