@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 # Create your views here.
 def Onboarding(req):
     if req.user.is_authenticated:
-        redirect('/Home')
+        return redirect('/Home')
     
     return render(req, 'Onboarding.html')
 
