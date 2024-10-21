@@ -1,0 +1,92 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+nav {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Glassmorphic background */
+    backdrop-filter: blur(10px);
+    /* Glassmorphic effect */
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    /* For stacking context */
+    z-index: 10;
+    /* Ensure navbar stays above other elements */
+    margin-bottom: 20px;
+    /* Space below navbar */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 15px;
+    /* Space between menu items */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fefefe;
+    /* Dark text color */
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    /* Smooth transitions */
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Light background on hover */
+    /* Change text color on hover */
+}
+
+nav a {
+    color: #fdfdfd;
+    /* Dark text color for the other links */
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    /* Light background on hover */
+
+    /* Change text color on hover */
+}
+
+.messages {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    /* Space above messages */
+}
+
+.messages li {
+    background: rgba(255, 255, 255, 0.8);
+    /* Light background for messages */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.messages li.success {
+    color: green;
+}
+
+.messages li.error {
+    color: red;
+}

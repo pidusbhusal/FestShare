@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Money Tracker</title>
-    <link rel="stylesheet" type="text/css" href="css/stylefirstpage.css">
+    <!-- Load the CSS file -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'festShare/css/stylefirstpage.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
@@ -25,7 +27,7 @@
         </form>
 
         <div class="link">
-            <p>Don't have an account yet? <a href="SignUp.html">Create New Account</a></p>
+            <p>Don't have an account yet? <a href="/SignUp">Create New Account</a></p>
         </div>
     </div>
 </body>
