@@ -30,7 +30,7 @@ def Login(req):
         if user is not None:
             login(req, user)
             messages.success(req, 'Log in Sucessfull')
-            return redirect('/')
+            return redirect('/Home')
         else:
             # Failed
             messages.error(req, ("Invalid Username or password"))
