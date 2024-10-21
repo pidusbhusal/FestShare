@@ -5,78 +5,134 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-
-
-        .signin-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            width: 500px;
-
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        form {
-            width: fit-content;
-            margin: auto;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-group input {
-            width: 300px;
-            margin: auto;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .form-group input[type="submit"] {
-            background-color: #28a745;
-            color: white;
-            cursor: pointer;
-            border: none;
-        }
-
-        .form-group input[type="submit"]:hover {
-            background-color: #218838;
-        }
-
-        .form-group a {
-            text-decoration: none;
-            color: #007bff;
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
 </head>
+<style>
+    
+    * {
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-weight: 100;
+        font-style: normal;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom left, #3c007c, #4a007f, #6a00b3, #8f00c6, #b266e3, #d48aff);
+    }
+    .diagonal-stripe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.1) 50%);
+    }
+
+    .signin-container {
+        z-index: 1;
+        display: flex;
+        /* justify-content: center; */
+        align-items: left;
+        height: auto;
+        width: 40%;
+        height: 60%;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        background-color: white;
+        padding: 30px;
+    }
+
+    .login-box {
+        display: inline-block;
+        width: 60%;
+        padding-left: 10%;
+    }
+
+    h2 {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 50%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+    }
+
+    .form-group input[type="submit"] {
+        background-color: black;
+        color: white;
+        cursor: pointer;
+        border: none;
+        border-radius: 25px;
+        width: 20%;
+        padding: 10px;
+        font-size: 16px;
+        transition: transform 0.3s ease;
+    }
+
+    .form-group input[type="submit"]:hover {
+        transform: scale(1.1);
+    }
+
+    .password-hint {
+       
+        color: #555;
+        font-size: 14px;
+    }
+
+    .password-hint ul {
+        padding-left: 20px;
+    }
+
+    .password-hint li {
+        list-style-type: disc;
+    }
+
+    .form-group a {
+        text-decoration: none;
+        color: #007bff;
+        display: block;
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    .form-group p {
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .create-account-link {
+        text-align: left;
+    }
+
+    .create-account-link a {
+        color: #6c63ff;
+    }
+</style>
 
 <body>
+    <div class="diagonal-stripe"></div>
     <div class="signin-container">
-        <h2>Sign In </h2>
+        <div class="login-box">
+        <h2>Sign In </h2><br>
         <form action="/Login" method="POST">
             {% csrf_token %}
             <div class="form-group">
@@ -88,24 +144,24 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <div class="form-group">
-                <input type="submit" value="Sign In">
+                <input type="submit" value="Log in">
             </div>
             <div class="form-group">
                 <a href="/forgot-password">Forgot Password?</a>
             </div>
-            {% if messages %}
-            <ul>
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                    {% endfor %}
-            </ul>
-            {% endif %}
-            <div>
-                <p>Don't have an account ?
-                </p>
+            <div class="password-hint">
+                <ul>
+                    <li>Password should be 8 letter word</li>
+                    <li>Password should not be common</li>
+                </ul>
+            </div>
+         
+            <div class="create-account-link">
+                <p>Don't have an account?</p>
                 <a href="/SignUp">Create New Account</a>
             </div>
         </form>
+        </div>
     </div>
 </body>
 
