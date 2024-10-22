@@ -3,11 +3,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import UserAccount
+from .models import Event
 
 
 # we havn't been able to fetch the data from database yet
-
-
 def Home(req):
     if req.method == 'POST':
         if req.user.is_authenticated:
