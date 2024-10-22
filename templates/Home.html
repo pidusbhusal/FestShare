@@ -44,14 +44,10 @@
                         <input type="hidden" name="event_id" value="{{ event.id }}">
                         <button type="submit">Join this event</button>
                     </form>
-                    <span class="participant-count">{{ event.participants }}/{{ event.max_participants }}</span>
-                    {% if event.participants.all %}
-                    {% for participant in event.participants.all %}
-                    <li>{{ participant.first_name }} {{ participant.last_name }}</li>
-                    {% endfor %}
-                    {% else %}
-                    <li>No participants yet.</li>
-                    {% endif %}
+                    <span class="participant-count">
+                        Number of participant: {{ event.participants.count }}/{{ event.maxNumberOfPeople }}</span>
+                    <span>Ticket Price : {{event.ticketPrice}} $</span>
+
                 </div>
             </div>
         </div>
