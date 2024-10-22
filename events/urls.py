@@ -7,5 +7,5 @@ urlpatterns = [
     path('', views.Onboarding, name="Onboarding"),
     path('Home', views.Home),
     path('Chat',views.Chat,name='Chat'),
-    path('AddEvent', views.PostEvent, name = "Event Post Form")
+    path('AddEvent', views.AddEvent, name = "Event Post Form")
 ]

@@ -13,47 +13,44 @@
 </head>
 
 <body>
-    <form action="AddEvent">
-        <form action="/SignUp" method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="eventName">Name of the event</label>
-                <input type="text" name="eventName" id="eventName" required placeholder="Dashain">
-            </div>
-            <div class="form-group">
-                <label for="eventTime">When will you held the event:</label>
-                <input type="date" name="eventTime" id="eventTime" required>
-            </div>
-            <div class="form-group">
-                <label for="eventLocation">Where do you want to host this event:</label>
-                <input type="location" name="eventLocation" id="eventLocation" required placeholder="Toronto,ON">
-            </div>
-            <div class="form-group">
-                <label for="description">Description:</label><br>
-                <textarea id="description" name="description" rows="4" cols="50"
-                    placeholder="Write your description here..."></textarea>
-            </div>
-            <div class="form-group">
-                <label for="numberOfPeople">Number of people:</label>
-                <input type="number" name="numberOfPeople" id="numberOfPeople" required placeholder="10">
-            </div>
-            <div class="form-group">
-                <label for="ticketPrice">Ticket Price:</label>
-                <input type="price" name="price" id="price" required placeholder="0.00$">
-            </div>
-            <div class="form-group">
-                <label for="eventImage">Image:</label>
-                <input type="file" name="image" id="image" required><br><br>
+    {% include 'navbar.html' %}
+    <form action="AddEvent" method="POST" enctype="multipart/form-data">
 
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Add Event">
-            </div>
-            <div class="form-group">
-                <p>Already have an account?</p>
-                <a href="/Login">Sign In</a>
-            </div>
-        </form>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="title">Name of the event</label>
+            <input type="text" name="title" id="title" required placeholder="Dashain">
+        </div>
+        <div class="form-group">
+            <label for="eventTime">When will you held the event:</label>
+            <input type="date" name="eventTime" id="eventTime" required>
+        </div>
+        <div class="form-group">
+            <label for="eventLocation">Where do you want to host this event:</label>
+            <input type="location" name="eventLocation" id="eventLocation" required placeholder="Toronto,ON">
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label><br>
+            <textarea id="description" name="description" rows="4" cols="50"
+                placeholder="Write your description here..."></textarea>
+        </div>
+        <div class="form-group">
+            <label for="maxNumberOfPeople">Max Number of people:</label>
+            <input type="number" name="maxNumberOfPeople" id="maxNumberOfPeople" required placeholder="10">
+        </div>
+        <div class="form-group">
+            <label for="ticketPrice">Ticket Price:</label>
+            <input type="tickPrice" name="tickPrice" id="tickPrice" required placeholder="0.00$">
+        </div>
+        <div class="form-group">
+            <label for="eventImage">Image:</label>
+            <input type="file" name="image" id="image" required><br><br>
+
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add Event">
+        </div>
+
 
     </form>
 </body>
