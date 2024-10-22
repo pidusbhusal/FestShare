@@ -16,3 +16,9 @@ def Home(req):
     events = Event.objects.all()
 
     return render(req, 'Home.html', {'events': events})
+
+def Chat(req):
+    if not  req.user.is_authenticated:
+        return redirect('/Login')
+    
+    return render(req,'Chat.html') 

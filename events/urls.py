@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path('', views.Onboarding, name="Onboarding"),
-   path('Home', views.Home)
-    
+    path('Home', views.Home),
+    path('Chat/',views.Chat,name='Chat')
 ]
