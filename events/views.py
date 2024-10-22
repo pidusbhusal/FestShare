@@ -22,3 +22,6 @@ def Chat(req):
         return redirect('/Login')
     
     return render(req,'Chat.html') 
+
+def PostEvent(req):
+    return render(req, 'AddEvent.html')

@@ -1,13 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'festShare/css/styleSignupPage.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <title>Add Event</title>
 </head>
+
 <body>
     <form action="AddEvent">
-        <input type="submit" value = "Add Event">
+        <form action="/SignUp" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="eventName">Name of the event</label>
+                <input type="text" name="eventName" id="eventName" required placeholder="Dashain">
+            </div>
+            <div class="form-group">
+                <label for="eventTime">When will you held the event:</label>
+                <input type="date" name="eventTime" id="eventTime" required>
+            </div>
+            <div class="form-group">
+                <label for="eventLocation">Where do you want to host this event:</label>
+                <input type="location" name="eventLocation" id="eventLocation" required placeholder="Toronto,ON">
+            </div>
+            <div class="form-group">
+                <label for="description">Description:</label><br>
+                <textarea id="description" name="description" rows="4" cols="50"
+                    placeholder="Write your description here..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="numberOfPeople">Number of people:</label>
+                <input type="number" name="numberOfPeople" id="numberOfPeople" required placeholder="10">
+            </div>
+            <div class="form-group">
+                <label for="ticketPrice">Ticket Price:</label>
+                <input type="price" name="price" id="price" required placeholder="0.00$">
+            </div>
+            <div class="form-group">
+                <label for="eventImage">Image:</label>
+                <input type="file" name="image" id="image" required><br><br>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Event">
+            </div>
+            <div class="form-group">
+                <p>Already have an account?</p>
+                <a href="/Login">Sign In</a>
+            </div>
+        </form>
+
     </form>
 </body>
+
 </html>
