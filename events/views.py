@@ -84,3 +84,7 @@ def ProceedToCheckout(req):
 
     
     return render(req, "JoinEventCheckout.html")
+
+
+def yourEvent(req):
+    return render(req, "YourEvent.html")
