@@ -22,3 +22,10 @@ def Chat(req):
         return redirect('/Login')
     
     return render(req,'Chat.html') 
+
+
+def PostEvent(req):
+     if not  req.user.is_authenticated:
+        return redirect('/Login')
+             
+     return render(req,'PostEvent.html')
