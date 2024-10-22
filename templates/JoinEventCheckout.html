@@ -1,32 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'festShare/css/styleCheckout.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>Add Event</title>
+</head>
+
 <body>
-    <form action="ProceedToCheckout" method='POST'>
-        {% csrf_token %}
-        <div class="event-card">
-            <div class="event-header">
-                <span>Uploaded by: {{ organizer }}</span>
-                <span>Event on: {{date }}</span>
-            </div>
-            <input type="hidden" name="event_id" value="{{ event_id }}">
 
-            <h3 class="event-title">{{ title }}</h3>
-            <img class="event-image" src="{{ image }}" alt="{{ title }}">
-            <div class="event-body">
-                <p class="event-description">{{ description }}</p>
-                <div class="event-footer">
-                    <span class="participant-count">{{ participants }}/{{max_participants }}</span>
-                </div>
-            </div>
-            <input type="submit" value="Proceed To Checkout">
+
+    <div class="chat-nav">
+        <div class="logo">
+            <a href="/Home"> <img src="../static/Festshare_dark.png" alt="festshare-logo"> </a>
         </div>
+        <div class="pagenav">
+            <ul class="pagenav-ul">
+                <li><a class="n_button" href="/Home">Home</a></li>
+                <li><a class="n_button" href="/Group">My Groups</a></li>
+                <li><a class="post_event" href="/PostEvent">PostEvent</a></li>
+                <li><a class="n_button" href="/Login">Login</a></li>
+            </ul>
+        </div>
+    </div>
 
 
-        <p>Total Price</p>
-        {{price}}
+    <main class="checkout-section">
+        <form action="ProceedToCheckout" method='POST'>
+
+            {% csrf_token %}
+            <div class="event-card">
+                <div class="image-section">
+                    <img class="event-image" src="../static/test_event_image.jpeg" alt="{{ title }}">
+                    <!-- <img class="event-image" src="{{ image }}" alt="{{ title }}"> -->
+                </div>
+
+                <!-- <h3 class="event-title">{{ title }}</h3> -->
+                <h3>Name of the event</h3>
+                <!-- <p class="event-description">{{ description }}</p> -->
+
+                <p class="event-description">Join us for an unforgettable party in Toronto! Get ready for a night filled
+                    with great music, dancing, and amazing vibes. Whether you're here to celebrate, socialize, or just
+                    have a good time, this event promises to be a night to remember. See you there!</p>
+
+                <div class="event-header">
+                    <span>Organized by: {{ organizer }}</span>
+                    <br>
+                    <span>Event on: {{date }}</span>
+                </div>
+                <input type="hidden" name="event_id" value="{{ event_id }}">
+                <div class="num-of-people"> <Label for="">Number Of People</Label>
+                </div>
 
 
 
+                <div class="event-body">
+                    <div class="event-footer">
+                        <span class="participant-count">{{ participants }}/{{max_participants }}</span>
+                    </div>
+                </div>
 
-    </form>
+                <p>Total Price</p>
+                {{price}}
+
+                <input type="submit" value="Proceed To Checkout">
+            </div>
+
+        </form>
+
+
+
+    </main>
 
 
 </body>
+
+</html>
