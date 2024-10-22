@@ -18,9 +18,15 @@ def Home(req):
     if not  req.user.is_authenticated:
         return redirect('/Login')
     
+    has_events = Event.objects.filter(organizer=req.user).exists() if req.user.is_authenticated else False
     events = Event.objects.all()
+    context = { 
+        'events': events,
+        'has_events':has_events
+    }
+    
 
-    return render(req, 'Home.html', {'events': events})
+    return render(req, 'Home.html',context)
 
 def Chat(req):
     if not  req.user.is_authenticated:
