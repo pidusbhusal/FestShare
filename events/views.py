@@ -33,7 +33,7 @@ def AddEvent(req):
         date = req.POST.get('eventTime')
         location = req.POST.get('eventLocation')
         image = req.FILES.get('image') 
-        ticket_price = req.POST.get('tickPrice')
+        ticket_price = req.POST.get('ticketPrice')
         max_people = req.POST.get('maxNumberOfPeople')
     
         event = Event.objects.create(
