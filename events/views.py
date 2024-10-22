@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Event  # Import your Event model
 from django.contrib import messages
 
@@ -54,11 +54,33 @@ def AddEvent(req):
     return render(req, 'AddEvent.html')
 
 
-def join_event(request, event_id):
-    if request.method == "POST":
-        event = Event.objects.get(id=event_id)
-        if event.participants < event.max_participants:
-            event.participants += 1
+def joinEvent(request):
+    if request.method == 'POST':
+        event_id = request.POST.get('event_id')
+        event = get_object_or_404(Event, id=event_id)
+        organizer = event.organizername
+        date = event.date
+        title = event.title
+        image = event.image.url
+        description = event.eventDescription
+        participant = event.participants
+        maxparticipant = event.maxNumberOfPeople
+        price  = event.ticketPrice
+        return render(request , 'JoinEventCheckout.html', {'event_id':event_id,  'organizer' :organizer, 'date':date, 'title':title, 'image':image, 'description':description, 'participant':participant, 'maxparticipant':maxparticipant , 'price':price})
+
+
+def ProceedToCheckout(req):
+    if req.method == 'POST':
+        event_id = req.POST.get('event_id')
+        
+        event = get_object_or_404(Event, id=event_id)
+
+        user = req.user
+        if user not in event.participants.all():
+            event.participants.add(user)  # Add the user to participants
             event.save()
-            return redirect('Home')  # Redirect back to the event list page after joining
-    return HttpResponse("Unable to join the event.", status=400)
+        messages.success(req,"Particiapted to the event sucessfully")
+        return redirect("/Home")
+
+    
+    return render(req, "JoinEventCheckout.html")
