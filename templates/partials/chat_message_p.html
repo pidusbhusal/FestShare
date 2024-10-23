@@ -1,0 +1,16 @@
+{% if message.author == user %}
+<li class="message-sent">
+    <div class="message-bubble-sent">
+        <span>{{ message.body }}</span>
+    </div>
+</li>
+{% else %}
+<li class="message-received">
+    <div class="message-bubble-received">
+        <span>{{ message.body }}</span>
+    </div>
+    <div class="message-footer">
+        <span>{{ message.author.first_name }}</span>
+    </div>
+</li>
+{% endif %}

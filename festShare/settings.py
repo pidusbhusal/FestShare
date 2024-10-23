@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'addingUser',
     'events',
     'channels',
-    'rtchat'
+    'rtchat',
+    'django_htmx'
     
     
 ]
@@ -44,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_htmx.middleware.HtmxMiddleware'
 ]
 
 ROOT_URLCONF = 'festShare.urls'
