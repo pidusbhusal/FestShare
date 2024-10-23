@@ -95,12 +95,20 @@ def ProceedToCheckout(req):
 
 
 def yourEvent(req):
-    organizerEvent = Event.objects.filter(organizer = req.user)
-    event_sponsors = Sponsor.objects.filter(event=organizerEvent.first())
+    organizerEvents = Event.objects.filter(organizer=req.user)
     
+    # Fetch all sponsors related to those events and convert querysets to lists
+    sponsors = Sponsor.objects.filter(event__in=organizerEvents)
     
-    context = {'events':organizerEvent, 'sponsers': event_sponsors}
-    return render(req, "YourEvent.html", context )
+    # Create a dictionary mapping each event to its list of sponsors
+    event_sponsors = {event: list(sponsors.filter(event=event)) for event in organizerEvents}
+    ourSponsers = event_sponsors
+    # Render the page with the events and their sponsors
+    context = {
+        'events': organizerEvents,
+        'event_sponsors': event_sponsors
+    }
+    return render(req, "YourEvent.html", context)
 
 def delete_event(req, event_id):
     event = get_object_or_404(Event, id=event_id, organizer=req.user)
