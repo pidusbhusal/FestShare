@@ -18,47 +18,78 @@
 </head>
 
 <body>
-    <div class="diagonal-stripe"></div>
     <div id=navbar>
         {% include 'navbar.html' %}
     </div>
 
 
     <div class="main-container">
-        {% for event in events %}
-        <div class="event-card">
-            <div class="event-header">
-                <span>Uploaded by: {{ event.organizer }}</span>
-                <span>Event on: {{ event.date }}</span>
-                <span>Location: {{event.location}}</span>
-            </div>
-            <h3 class="event-title">{{ event.title }}</h3>
-            <div id="img">
-                <img class="event-image" src="{{ event.image.url }}" alt="{{ event.title }}">
-            </div>
-            <div class="event-body">
-                <p class="event-description">{{ event.eventDescription }}</p>
-                <div class="event-footer">
-                    {% if user in event.participants.all %}
-                    <!-- If the user is already a participant, show the link to the chat room -->
-                    <a href="/Home">Go to Chat Room</a>
-                    {% else %}
-                    <!-- If the user is not a participant, show the Join button -->
-                    <form action="/joinEvent" method="POST">
-                        {% csrf_token %}
-                        <input type="hidden" name="event_id" value="{{ event.id }}">
-                        <button type="submit">Join this event</button>
-                    </form>
-                    {% endif %}
-                    <span class="participant-count">
-                        Number of participant: {{ event.participants.count }}/{{ event.maxNumberOfPeople }}</span>
-                    <span>Ticket Price : {{event.ticketPrice}} $</span>
+        <div class="menu">
+            {% for event in events %}
+            <div class="event-card">
 
+
+                <div id="img">
+                    <img class="event-image" src="{{ event.image.url }}" alt="{{ event.title }}">
                 </div>
+                <div class="event-header">
+                    <p class="event-title">{{ event.title }}</p>
+                    <p class="participant-count">
+                        <span class="labels">Participant</span>: <span class="labels-content">
+                            {{ event.participants.count }}/{{ event.maxNumberOfPeople }}</span>
+                    </p>
+                </div>
+
+                <div class="event-body">
+                    <div class="event-info">
+                        <div>
+                            <div class="labels">Event on: <span class="labels-content">{{ event.date }}</span></div>
+
+                        </div>
+                        <div>
+                            <div class="labels">Location: <span class="labels-content">{{event.location}}</span></div>
+
+                        </div>
+                        {% if user in event.participants.all %}
+                        <!-- If the user is already a participant, show the link to the chat room -->
+                        <a href="/Home">Go to Chat Room</a>
+                        {% else %}
+                        <!-- If the user is not a participant, show the Join button -->
+                        <form action="/joinEvent" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="event_id" value="{{ event.id }}">
+                            <button type="submit">Join this event</button>
+                        </form>
+                        {% endif %}
+                    </div>
+
+                    <!-- <div class="event-description">{{ event.eventDescription }}</div> -->
+                </div>
+                <div style="padding: 15px;">
+                    <div class="event-footer">
+                        <form action="/joinEvent" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="event_id" value="{{ event.id }}">
+                            <button type="submit">Join this event</button>
+                        </form>
+
+
+                        <p><span class="labels">Ticket Price</span> : <span class="labels-content">{{event.ticketPrice}}
+                                $</span> </p>
+                    </div>
+                </div>
+
+                <div class="event-uploader">
+                    <span class="labels">Uploaded by </span>: <span class="labels-content">{{ event.organizer }}</span>
+                </div>
+
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
+    {% include 'GotoTopButton.html' %}
+
+    <br><br><br><br><br><br><br>
 </body>
 
 </html>
