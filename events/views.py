@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Event  # Import your Event model
+from .models import Event, Sponsor  # Import your Event model
 from django.contrib import messages
 import os
 from django.conf import settings
@@ -96,7 +96,10 @@ def ProceedToCheckout(req):
 
 def yourEvent(req):
     organizerEvent = Event.objects.filter(organizer = req.user)
-    context = {'events':organizerEvent}
+    event_sponsors = Sponsor.objects.filter(event=organizerEvent.first())
+    
+    
+    context = {'events':organizerEvent, 'sponsers': event_sponsors}
     return render(req, "YourEvent.html", context )
 
 def delete_event(req, event_id):

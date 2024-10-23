@@ -63,6 +63,18 @@
                 </div>
 
                 <hr>
+                {{event_sponsors}}
+                {% for sponsor in event_sponsors %}
+                <li>
+                    <strong>Company Name:</strong> {{ sponsor.company_name }}<br>
+                    <strong>Email:</strong> {{ sponsor.company_email }}<br>
+                    <strong>Message:</strong> {{ sponsor.sponsor_message }}<br>
+                    <strong>Organizer:</strong> {{ sponsor.organizer.first_name }}
+                </li>
+                {% empty %}
+                <li>No sponsors for this event.</li>
+                {% endfor %}
+
             </div>
             {% endfor %}
             {% else %}

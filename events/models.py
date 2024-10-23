@@ -21,3 +21,22 @@ class Event(models.Model):
 
     def __str__(self):
         return f"{self.title} organized by {self.organizername}"
+
+
+
+
+class Sponsor(models.Model):  # Corrected spelling
+    organizer = models.ForeignKey(User, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    company_name = models.CharField(max_length=300)  # Use snake_case for field names
+    company_email = models.EmailField(max_length=300)  # Changed to EmailField for validation
+    sponsor_message = models.TextField()
+
+    def organizer_name(self):
+        return self.organizer.first_name  # Access the user's first name
+    
+    def event_name(self):
+        return self.event.title
+
+    def __str__(self):
+        return f"{self.event_name()} Sponsored By {self.organizer_name()}"
