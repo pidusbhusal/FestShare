@@ -50,28 +50,23 @@
                             <div class="labels">Location: <span class="labels-content">{{event.location}}</span></div>
 
                         </div>
-                        {% if user in event.participants.all %}
-                        <!-- If the user is already a participant, show the link to the chat room -->
-                        <a href="/Home">Go to Chat Room</a>
-                        {% else %}
-                        <!-- If the user is not a participant, show the Join button -->
-                        <form action="/joinEvent" method="POST">
-                            {% csrf_token %}
-                            <input type="hidden" name="event_id" value="{{ event.id }}">
-                            <button type="submit">Join this event</button>
-                        </form>
-                        {% endif %}
+
                     </div>
 
                     <!-- <div class="event-description">{{ event.eventDescription }}</div> -->
                 </div>
                 <div style="padding: 15px;">
                     <div class="event-footer">
+                        {% if user in event.participants.all %}
+                        <!-- If the user is already a participant, show the link to the chat room -->
+                        <a href="/Home">Go to Chat Room</a>
+                        {% else %}
                         <form action="/joinEvent" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="event_id" value="{{ event.id }}">
                             <button type="submit">Join this event</button>
                         </form>
+                        {% endif %}
 
 
                         <p><span class="labels">Ticket Price</span> : <span class="labels-content">{{event.ticketPrice}}

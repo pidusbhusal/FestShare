@@ -39,28 +39,15 @@
 
     </nav>
 
+
+
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
         <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
         {% endfor %}
     </ul>
-    {% if user.is_authenticated %}
-    <a href="Logout">Log Out</a>
-    {% else %}
-    <a href="Login">Log in</a>
     {% endif %}
-    <<<<<<< HEAD </nav>
-
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-        =======
 </body>
 
 </html>
->>>>>>> origin/sugam_branch
