@@ -43,7 +43,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'saving_app.urls'
+ROOT_URLCONF = 'festShare.urls'
 
 TEMPLATES = [
     {
@@ -61,7 +61,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'saving_app.wsgi.application'
+WSGI_APPLICATION = 'festShare.wsgi.application'
 
 
 # Database
