@@ -1,27 +1,37 @@
-<nav class="chat-nav">
-    <div class="logo">
-        <a href="/Home"> <img src="../static/Festshare_dark.png" alt="festshare-logo"> </a>
-    </div>
-    <ul class="pagenav-ul">
-        <li><a href="/Home">Home</a></li>
-        <li><a href="/Chat">Chat</a></li>
-        {% if has_events %}
-        <li><a href="/YourEvent">Your Events</a></li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="chat-nav">
+        <div class="logo">
+            <a href="/Home"> <img src="../static/Festshare_dark.png" alt="festshare-logo"> </a>
+        </div>
+        <ul class="pagenav-ul">
+            <li><a href="/Home">Home</a></li>
+            <li><a href="/Chat">Chat</a></li>
+            {% if has_events %}
+            <li><a href="/YourEvent">Your Events</a></li>
+            {% else %}
+            <li><a href="/AddEvent">Post Event</a></li>
+            {% endif %}
+        </ul>
+        {% if user.is_authenticated %}
+        <a href="Logout">Log Out</a>
         {% else %}
-        <li><a href="/AddEvent">Post Event</a></li>
+        <a href="Login">Log in</a>
         {% endif %}
+    </nav>
+    
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
+        {% endfor %}
     </ul>
-    {% if user.is_authenticated %}
-    <a href="Logout">Log Out</a>
-    {% else %}
-    <a href="Login">Log in</a>
     {% endif %}
-</nav>
-
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+</body>
+</html>
