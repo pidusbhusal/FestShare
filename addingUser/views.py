@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
-from money_tracker.models import UserAccount
 from django.contrib import messages
 from django.http import HttpResponse
 
