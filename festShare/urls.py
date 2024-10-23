@@ -9,6 +9,8 @@ urlpatterns = [
     path('', include('addingUser.urls')),
     path('', include('django.contrib.auth.urls')),
     path('', include('events.urls')),
+    path('', include('rtchat.urls'))
+
     
    
 ]

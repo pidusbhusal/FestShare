@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'addingUser',
     'events',
+    'channels',
+    'rtchat'
     
     
 ]
@@ -138,3 +140,5 @@ TEMPLATES = [
         },
     },
 ]
+
+ASGI_APPLICATION = 'chat_project.asgi.application'
