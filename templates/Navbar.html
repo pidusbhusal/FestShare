@@ -2,20 +2,22 @@
     <div class="logo">
         <a href="/Home"> <img src="../static/Festshare_dark.png" alt="festshare-logo"> </a>
     </div>
-    <ul class="pagenav-ul">
-        <li><a href="/Home">Home</a></li>
-        <li><a href="/Chat">Chat</a></li>
-        {% if has_events %}
-        <li><a href="/YourEvent">Your Events</a></li>
-        {% else %}
-        <li><a href="/AddEvent">Post Event</a></li>
-        {% endif %}
-    </ul>
-    {% if user.is_authenticated %}
-    <a href="Logout">Log Out</a>
-    {% else %}
-    <a href="Login">Log in</a>
-    {% endif %}
+    <div class="pagenav">
+        <ul class="pagenav-ul">
+            <li><a class="n_button" href="/Home">Home</a></li>
+            <li><a class="n_button" href="/Chat">Chat</a></li>
+            {% if has_events %}
+            <li><a class="post_event" href="/YourEvent">Your Events</a></li>
+            {% else %}
+            <li><a class="post_event" href="/AddEvent">Post Event</a></li>
+            {% endif %} {% if user.is_authenticated %}
+            <li><a class="n_button" href="Logout">Log Out</a></li>
+            {% else %}
+            <li><a class="n_button" href="Login">Log in</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
 </nav>
 
 {% if messages %}
