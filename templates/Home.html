@@ -39,11 +39,17 @@
             <div class="event-body">
                 <p class="event-description">{{ event.eventDescription }}</p>
                 <div class="event-footer">
+                    {% if user in event.participants.all %}
+                    <!-- If the user is already a participant, show the link to the chat room -->
+                    <a href="/Home">Go to Chat Room</a>
+                    {% else %}
+                    <!-- If the user is not a participant, show the Join button -->
                     <form action="/joinEvent" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="event_id" value="{{ event.id }}">
                         <button type="submit">Join this event</button>
                     </form>
+                    {% endif %}
                     <span class="participant-count">
                         Number of participant: {{ event.participants.count }}/{{ event.maxNumberOfPeople }}</span>
                     <span>Ticket Price : {{event.ticketPrice}} $</span>

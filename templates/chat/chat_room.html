@@ -1,0 +1,17 @@
+<h2>Chat for Event: {{ event.title }}</h2>
+<div class="chat-messages">
+    {% for message in messages %}
+    <div class="message">
+        <strong>{{ message.user.username }}:</strong> {{ message.content }} <br>
+        <span class="timestamp">{{ message.timestamp }}</span>
+    </div>
+    {% empty %}
+    <p>No messages yet.</p>
+    {% endfor %}
+</div>
+
+<form method="POST" action=".">
+    {% csrf_token %}
+    <textarea name="message" placeholder="Type your message..."></textarea><br>
+    <button type="submit">Send</button>
+</form>
