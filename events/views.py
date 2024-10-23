@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Event  # Import your Event model
 from django.contrib import messages
+import os
+from django.conf import settings
 
 from django.http import HttpResponse
 
@@ -33,7 +35,7 @@ def AddEvent(req):
         date = req.POST.get('eventTime')
         location = req.POST.get('eventLocation')
         image = req.FILES.get('image') 
-        ticket_price = req.POST.get('tickPrice')
+        ticket_price = req.POST.get('ticketPrice')
         max_people = req.POST.get('maxNumberOfPeople')
     
         event = Event.objects.create(
@@ -84,3 +86,23 @@ def ProceedToCheckout(req):
 
     
     return render(req, "JoinEventCheckout.html")
+
+
+def yourEvent(req):
+    organizerEvent = Event.objects.filter(organizer = req.user)
+    context = {'events':organizerEvent}
+    return render(req, "YourEvent.html", context )
+
+def delete_event(req, event_id):
+    event = get_object_or_404(Event, id=event_id, organizer=req.user)
+    
+    if req.method == 'POST':
+        if event.image:
+            image_path = os.path.join(settings.MEDIA_ROOT, event.image.name)
+            if os.path.isfile(image_path):
+                os.remove(image_path)
+        event.delete()
+        messages.success(req, "Event deleted successfully.")
+        return redirect('/YourEvent')  # Redirect to the page listing the user's events
+
+    return redirect('/YourEvent')  # Redirect if the method is not POST (should not happen)

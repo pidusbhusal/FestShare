@@ -32,13 +32,13 @@
     </div>
 
     <div class="form_main">
-        <form action="AddEvent" method="post">
-            <p>Post a event</p>
+        <form action="AddEvent" method="post" enctype="multipart/form-data">
+            <h1>Post a event</h1>
             <div class="form_section">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="eventName">Name of the event</label>
-                    <input type="text" name="eventName" id="eventName" required placeholder="Dashain">
+                    <label for="title">Name of the event</label>
+                    <input type="text" name="title" id="title" required placeholder="Dashain">
                 </div>
                 <div class="form-group-1">
                     <div class="form-group">
@@ -58,12 +58,12 @@
                 </div>
                 <div class="form-group-1">
                     <div class="form-group">
-                        <label for="numberOfPeople">Number of people:</label>
-                        <input type="number" name="numberOfPeople" id="numberOfPeople" required placeholder="10">
+                        <label for="maxNumberOfPeople">Maximum Number of people:</label>
+                        <input type="number" name="maxNumberOfPeople" id="maxNumberOfPeople" min="1" required placeholder="10">
                     </div>
                     <div class="form-group">
                         <label for="ticketPrice">Ticket Price:</label>
-                        <input type="price" name="price" id="price" required placeholder="0.00$">
+                        <input type="ticketPrice" name="ticketPrice" id="ticketPrice" required placeholder="0.00$">
                     </div>
                 </div>
                 <div class="form-group">
@@ -82,10 +82,10 @@
     </div>
 
     <script>
-       document.getElementById('image').addEventListener('change', function () {
-        const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
-        document.getElementById('image-upload').textContent = fileName;
-    });
+        document.getElementById('image').addEventListener('change', function () {
+            const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+            document.getElementById('image-upload').textContent = fileName;
+        });
     </script>
 
 
