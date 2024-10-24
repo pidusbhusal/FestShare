@@ -17,8 +17,18 @@
 <body>
 
 
-    <div id=navbar>
-        {% include 'navbar.html' %}
+    <div class="chat-nav">
+        <div class="logo">
+            <a href="/Home"> <img src="../static/Festshare_dark.png" alt="festshare-logo"> </a>
+        </div>
+        <div class="pagenav">
+            <ul class="pagenav-ul">
+                <li><a class="n_button" href="/Home">Home</a></li>
+                <li><a class="n_button" href="/Group">My Groups</a></li>
+                <li><a class="post_event" href="/PostEvent">PostEvent</a></li>
+                <li><a class="n_button" href="/Login">Login</a></li>
+            </ul>
+        </div>
     </div>
 
 
@@ -52,15 +62,15 @@
                         <div class="title">Available participant </div>
                         <div class="title-info"> {{ maxparticipant }} </div>
                     </div>
-                    
+
                 </div>
 
                 <input type="hidden" name="event_id" value="{{ event_id }}">
 
-              
 
 
-               
+
+
 
                 <div class="price">
                     <div class="title">Price</div>
