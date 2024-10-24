@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Event, Sponsor  # Import your Event model
+from .models import Event  # Import your Event model
 from django.contrib import messages
 import os
 from django.conf import settings
-
+from sponsers.models import EventSponser
 from django.http import HttpResponse
 
 
@@ -97,16 +97,16 @@ def ProceedToCheckout(req):
 def yourEvent(req):
     organizerEvents = Event.objects.filter(organizer=req.user)
     
-    # Fetch all sponsors related to those events and convert querysets to lists
-    sponsors = Sponsor.objects.filter(event__in=organizerEvents)
+    # Initialize an empty list to hold all sponsors
+    sponsers = []
     
-    # Create a dictionary mapping each event to its list of sponsors
-    event_sponsors = {event: list(sponsors.filter(event=event)) for event in organizerEvents}
-    ourSponsers = event_sponsors
-    # Render the page with the events and their sponsors
+    # Iterate over each event to collect sponsors
+    for event in organizerEvents:
+        sponsers.extend(event.events_sponsers.all())  # Add sponsors for each event to the list
+    
     context = {
         'events': organizerEvents,
-        'event_sponsors': event_sponsors
+        'sponsers': sponsers
     }
     return render(req, "YourEvent.html", context)
 

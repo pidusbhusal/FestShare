@@ -15,7 +15,7 @@ def chat_view(req):
         form = ChatmessageCreateForm(req.POST)
         if form.is_valid():
             message = form.save(commit=False)
-            message.author = req.user
+            message.author = req.user 
             message.group = chat_group
             message.save()
             return redirect('/Chat')

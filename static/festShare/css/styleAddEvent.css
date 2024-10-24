@@ -107,6 +107,13 @@ input[type="price"] {
 
 }
 
+input {
+  height: 24px;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+  padding: 16px;
+}
+
 textarea {
   border: 1px solid rgb(200, 200, 200);
   border-radius: 5px;
@@ -150,15 +157,17 @@ input[type="file"] {
 }
 
 input[type="submit"] {
-  height: 50px;
+  height: fit-content;
   width: fit-content;
   border-radius: 50px;
-  border: #5C0D9D;
+  border: 1px solid #5C0D9D;
   color: white;
   background-color: #5C0D9D;
 }
 
 input[type="submit"]:hover {
+  height: fit-content;
+  width: fit-content;
   background-color: white;
   color: black;
   border: 1px solid black;

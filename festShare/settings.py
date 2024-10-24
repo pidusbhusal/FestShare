@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'events',
     'channels',
     'rtchat',
-    'django_htmx'
+    'django_htmx',
+    'sponsers',
     
     
 ]

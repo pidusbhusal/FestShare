@@ -59,12 +59,23 @@
                     <div class="event-footer">
                         {% if user in event.participants.all %}
                         <!-- If the user is already a participant, show the link to the chat room -->
-                        <a href="/Home">Go to Chat Room</a>
+                        <p>You are already in this event</p>
                         {% else %}
                         <form action="/joinEvent" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="event_id" value="{{ event.id }}">
                             <button type="submit">Join this event</button>
+                        </form>
+                        {% endif %}
+
+                        {% if user in sponsers.all %}
+                        <!-- If the user is already a participant, show the link to the chat room -->
+                        <p>You are already sponsering </p>
+                        {% else %}
+                        <form action="/BeSponser" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="event_id" value="{{ event.id }}">
+                            <button type="submit">Sponser this event</button>
                         </form>
                         {% endif %}
 
