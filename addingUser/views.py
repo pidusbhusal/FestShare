@@ -95,8 +95,7 @@ def RegisterUser(req):
         login(req, user)
 
         # filling userdata in models for app user
-        user_account = UserAccount(user = req.user, firstName = firstName, lastname = LastName, email = email, preferences = preferences)
-        user_account.save()
+        
 
         # verify the registration
         messages.success(req, ("registration sucessfull"))

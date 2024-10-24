@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     path('', views.Onboarding, name="Onboarding"),
     path('Home', views.Home),
-    
+    path('leaveEvent', views.leaveEvent),
     path('AddEvent', views.AddEvent, name = "Event Post Form"),
     path('joinEvent', views.joinEvent, name = "Joining The Event"), 
     path('ProceedToCheckout', views.ProceedToCheckout, name = "Joining Event Checkout"),

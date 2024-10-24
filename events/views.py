@@ -123,3 +123,20 @@ def delete_event(req, event_id):
         return redirect('/YourEvent')  # Redirect to the page listing the user's events
 
     return redirect('/YourEvent')  # Redirect if the method is not POST (should not happen)
+
+def leaveEvent(req):
+    if req.method == 'POST':
+        event_id = req.POST.get('event_id')
+        
+        event = get_object_or_404(Event, id=event_id)
+
+        user = req.user
+        if user in event.participants.all():
+            event.participants.remove(user)  
+            event.save()
+        messages.success(req,"Left the event sucessfully")
+        return redirect("/Home")
+
+    messages.error(req,"wasn't able to leave")
+    return redirect("/Home")
+    
