@@ -2,6 +2,78 @@
 {% include 'Navbar.html' %}
 
 <style>
+    * {
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+
+        margin: 0;
+    }
+
+    .chat-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 120px 30px 120px;
+        background-color: #f2e1ff;
+    }
+
+    .logo {
+        height: 30px;
+    }
+
+    .pagenav {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .pagenav-ul {
+        list-style-type: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pagenav-ul li {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .post_event {
+        color: white;
+        background-color: #5c0d9d;
+        padding: 15px;
+        border-radius: 7px;
+    }
+
+    .post_event:hover {
+        background-color: #6925a2;
+        transition: 0.5s ease-in;
+    }
+
+    .pagenav a {
+        text-decoration: none;
+    }
+
+    .n_button {
+        color: black;
+    }
+
+    .pagenav-ul li .n_button:hover {
+        text-decoration: underline;
+
+    }
+
+    .messages li.success {
+        color: green;
+    }
+
+    .messages li.error {
+        color: red;
+    }
+
     /* General styles */
     .wrapper {
         display: block;
@@ -143,6 +215,7 @@
         /* Top border for separation */
     }
 </style>
+
 
 <wrapper class="wrapper">
     <div id="chat_window" class="chat-window">

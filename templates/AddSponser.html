@@ -24,7 +24,7 @@
         <div class="pagenav">
             <ul class="pagenav-ul">
                 <li><a class="n_button" href="/Home">Home</a></li>
-                <li><a class="n_button" href="/Group">My Groups</a></li>
+                <li><a class="n_button" href="/Group">Chat</a></li>
                 <li><a class="post_event" href="/PostEvent">PostEvent</a></li>
                 <li><a class="n_button" href="/Login">Login</a></li>
             </ul>
@@ -33,7 +33,7 @@
 
     <div class="form_main">
         <form action="AddSponser" method="post" enctype="multipart/form-data">
-            <h1>Sponser this event</h1>
+            <h1>Sponsor this event</h1>
             <div class="form_section">
                 {% csrf_token %}
 
@@ -59,7 +59,7 @@
                         placeholder="Write your description here..."></textarea>
                 </div>
                 <input type="hidden" name="event_id" value="{{ eventId }}">
-              
+
                 <div class="form-group">
                     <input type="submit" value="Add Event">
                 </div>

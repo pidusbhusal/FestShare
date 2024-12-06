@@ -25,7 +25,7 @@
 
     <div class="main-container">
         <div class="menu">
-            {% for event in events %}
+            {% for event in events reversed %}
             <div class="event-card">
 
 
@@ -86,7 +86,7 @@
                         <form action="/BeSponser" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="event_id" value="{{ event.id }}">
-                            <button type="submit">Sponser this event</button>
+                            <button type="submit">Sponsor this event</button>
                         </form>
                         {% endif %}
 
